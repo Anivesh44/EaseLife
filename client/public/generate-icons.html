@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .icon-preview {
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>EASELIFE PWA Icon Generator</h1>
+    <p>Click the buttons below to generate and download PWA icons.</p>
+    
+    <div>
+        <button onclick="generateIcon(192)">Generate 192x192 Icon</button>
+        <button onclick="generateIcon(512)">Generate 512x512 Icon</button>
+    </div>
+    
+    <div id="previews"></div>
+
+    <script>
+        function generateIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#2563eb');
+            gradient.addColorStop(1, '#4f46e5');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.3}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('EL', size / 2, size / 2);
+            
+            // Download
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon-${size}.png`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+            
+            // Preview
+            const preview = document.createElement('div');
+            preview.className = 'icon-preview';
+            preview.innerHTML = `
+                <p>${size}x${size}</p>
+                <img src="${canvas.toDataURL()}" style="width: 100px; height: 100px;">
+            `;
+            document.getElementById('previews').appendChild(preview);
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,84 @@
+═══════════════════════════════════════════════════════
+   HOW TO OPEN YOUR EASELIFE WEBSITE
+═══════════════════════════════════════════════════════
+
+METHOD 1: EASIEST WAYhttp
+───────────────────────────────────────────────────────
+1. Double-click "START-WEBSITE.bat" file
+2. Wait for it to start
+3. Open browser: ://localhost:3000
+
+METHOD 2: MANUAL WAY
+───────────────────────────────────────────────────────
+
+Step 1: Open Command Prompt or Terminal
+   - Press Windows Key + R
+   - Type: cmd
+   - Press Enter
+
+Step 2: Go to your project folder
+   Type: cd C:\Users\Aniveshjaiswal\.cursor\easelife
+   Press Enter
+
+Step 3: Install packages (first time only)
+   Type: npm run install-all
+   Press Enter
+   Wait for installation to complete
+
+Step 4: Create environment files
+
+   A) Create server/.env file:
+      - Copy "server/environment1224" to "server/.env"
+      - Or create new file "server/.env" with this content:
+        MONGODB_URI=mongodb://localhost:27017/easelife
+        PORT=5000
+        JWT_SECRET=your_secret_key_123
+        NODE_ENV=development
+
+   B) Create client/.env.local file:
+      - Create new file "client/.env.local"
+      - Add this content:
+        NEXT_PUBLIC_API_URL=http://localhost:5000/api
+
+Step 5: Make sure MongoDB is running
+   - If you have MongoDB installed, start it
+   - Or use MongoDB Atlas (cloud version)
+
+Step 6: Start the website
+   Type: npm run dev
+   Press Enter
+
+Step 7: Open your browser
+   Visit: http://localhost:3000
+
+═══════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+───────────────────────────────────────────────────────
+
+❌ "npm: command not found"
+   → Install Node.js from https://nodejs.org
+
+❌ "MongoDB connection error"
+   → Start MongoDB service on your computer
+   → Or use MongoDB Atlas and update connection string
+
+❌ "Port already in use"
+   → Change PORT in server/.env to 5001
+   → Update NEXT_PUBLIC_API_URL in client/.env.local
+
+❌ "Module not found"
+   → Run: npm run install-all
+
+═══════════════════════════════════════════════════════
+
+WHAT YOU'LL SEE WHEN IT WORKS:
+───────────────────────────────────────────────────────
+✓ Backend: http://localhost:5000
+✓ Frontend: http://localhost:3000
+✓ MongoDB Connected
+
+Then open http://localhost:3000 in your browser!
+
+═══════════════════════════════════════════════════════
+
